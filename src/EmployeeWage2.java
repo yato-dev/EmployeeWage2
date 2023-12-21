@@ -1,16 +1,15 @@
 import java.util.Random;
 
-class EmployeeWage2 {
-    private static final int FULL_TIME = 1;
-    private static final int PART_TIME = 2;
+class Employee {
+    private final String companyName;
+    private final int hourlyWage;
+    private final int fullDayHours;
+    private final int partTimeHours;
+    private final int maxWorkingDays;
+    private final int maxWorkingHours;
 
-    private int hourlyWage;
-    private int fullDayHours;
-    private int partTimeHours;
-    private int maxWorkingDays;
-    private int maxWorkingHours;
-
-    public EmployeeWage2(int hourlyWage, int fullDayHours, int partTimeHours, int maxWorkingDays, int maxWorkingHours) {
+    public Employee(String companyName, int hourlyWage, int fullDayHours, int partTimeHours, int maxWorkingDays, int maxWorkingHours) {
+        this.companyName = companyName;
         this.hourlyWage = hourlyWage;
         this.fullDayHours = fullDayHours;
         this.partTimeHours = partTimeHours;
@@ -18,30 +17,15 @@ class EmployeeWage2 {
         this.maxWorkingHours = maxWorkingHours;
     }
 
-    public void checkAttendance() {
-        Random random = new Random();
-        int attendance = random.nextInt(2); 
-
-        if (attendance == FULL_TIME) {
-            System.out.println("Employee is present");
-        } 
-        else 
-        System.out.println("Employee is absent");
-    }
-
-
-
     public int calculateDailyWage() {
         Random random = new Random();
-        int attendance = random.nextInt(2); 
+        int attendance = random.nextInt(2); // 0 for absent, 1 for present
 
-        if (attendance == FULL_TIME) {
+        if (attendance == 1) {
             return hourlyWage * fullDayHours;
-        } else if(attendance==PART_TIME) {
-            return hourlyWage*partTimeHours;
+        } else {
+            return 0; // Employee is absent
         }
-        else 
-        return 0;
     }
 
     public int calculateMonthlyWage() {
@@ -50,6 +34,10 @@ class EmployeeWage2 {
             totalWage += calculateDailyWage();
         }
         return totalWage;
+    }
+
+    public int calculatePartTimeWage() {
+        return hourlyWage * partTimeHours;
     }
 
     public int calculateWagesTillCondition() {
@@ -65,6 +53,13 @@ class EmployeeWage2 {
 
         return totalWage;
     }
+
+    public void displayEmployeeDetails() {
+        System.out.println("Company: " + companyName);
+        System.out.println("Hourly Wage: " + hourlyWage);
+        System.out.println("Full Day Hours: " + fullDayHours);
+        System.out.println("Part Time Hours: " + partTimeHours);
+        System.out.println("Max Working Days: " + maxWorkingDays);
+        System.out.println("Max Working Hours: " + maxWorkingHours);
+    }
 }
-
-

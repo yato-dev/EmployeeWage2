@@ -1,20 +1,15 @@
+
 public class EmployeeWageCalculation {
     public static void main(String[] args) {
-        EmployeeWage2 employee = new EmployeeWage2(20, 8, 4, 20, 100);
+        Employee company1Employee = new Employee("Company 1", 20, 8, 4, 20, 100);
+        Employee company2Employee = new Employee("Company 2", 25, 9, 5, 22, 110);
 
-        System.out.println("Welcome to Employee Wage Computation Program");
+      
+        company1Employee.displayEmployeeDetails();
+        company2Employee.displayEmployeeDetails();
 
-
-        employee.checkAttendance();
-        int dailyWage = employee.calculateDailyWage();
-        System.out.println(" Daily Wage: " + dailyWage);
-
-     
-        int monthlyWage = employee.calculateMonthlyWage();
-        System.out.println(" Monthly Wage: " + monthlyWage);
-
-       
-        int wagesTillCondition = employee.calculateWagesTillCondition();
-        System.out.println(" Wages till condition: " + wagesTillCondition);
+        
+        System.out.println("Company 1 Monthly Wage: " + company1Employee.calculateMonthlyWage());
+        System.out.println("Company 2 Monthly Wage: " + company2Employee.calculateMonthlyWage());
     }
 }
